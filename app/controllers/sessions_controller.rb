@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   include CurrentUserConcern
+  skip_before_action :ensure_user_is_logged_in, except: [:destroy]
+  before_action :ensure_user_is_not_logged_in, except: [:destroy]
 
   def create
     user = User
