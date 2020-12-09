@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   include CurrentUserConcern
-  skip_before_action :ensure_user_is_logged_in, except: [:destroy]
-  before_action :ensure_user_is_not_logged_in, except: [:destroy]
+  skip_before_action :ensure_user_is_logged_in, only: [:create]
+  before_action :ensure_user_is_logged_out, only: [:create]
 
   def create
     user = User
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: { status: :created, logged_in: true, user: user }
     else
-      render json: { status: :unprocessable_entity, errors: user.errors.full_messages }
+      render json: { status: :unprocessable_entity, msg: "Invalid login credentials" }
     end
   end
 

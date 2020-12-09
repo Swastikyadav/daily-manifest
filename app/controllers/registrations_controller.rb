@@ -1,10 +1,11 @@
 class RegistrationsController < ApplicationController
-  before_action :ensure_user_is_not_logged_in, except: [:destroy]
+  skip_before_action :ensure_user_is_logged_in, only: [:create]
+  before_action :ensure_user_is_logged_out, only: [:create]
 
   def create
-    user = User.create!(registration_params)
+    user = User.new(registration_params)
 
-    if user
+    if user.save
       session[:user_id] = user.id
       render json: { status: :created, user: user }
     else
