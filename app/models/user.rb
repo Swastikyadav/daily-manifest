@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :manifests
   has_secure_password
 
   validates :email, length: { maximum: 50 },
