@@ -8,19 +8,13 @@ class ManifestsController < ApplicationController
 
   def create
     @manifest = @user.manifests.new(manifest_params)
-    if @manifest.save
-      render json: { status: :ok, manifest: @manifest }
-    else
-      render json: { status: unprocessable_entity, errors: @manifest.errors.full_messages }
-    end
+    @manifest.save!
+    render json: { status: :ok, manifest: @manifest }
   end
 
   def update
-    if @manifest.update(manifest_params)
-      render json: { status: :ok, updated_manifest: @manifest }
-    else
-      render json: { status: :unprocessable_entity, errors: @manifest.errors.full_messages }
-    end
+    @manifest.update!(manifest_params)
+    render json: { status: :ok, updated_manifest: @manifest }
   end
 
   def destroy

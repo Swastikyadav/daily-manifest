@@ -5,11 +5,9 @@ class RegistrationsController < ApplicationController
   def create
     user = User.new(registration_params)
 
-    if user.save
-      session[:user_id] = user.id
-      render json: { status: :created, user: user }
-    else
-      render json: { status: :unprocessable_entity, errors: user.errors.full_messages }
+    if user.save!
+    session[:user_id] = user.id
+    render json: { status: :created, user: user }
     end
   end
 

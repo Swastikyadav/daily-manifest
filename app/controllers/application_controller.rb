@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include CurrentUserConcern
+  rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   skip_before_action :verify_authenticity_token
   before_action :ensure_user_is_logged_in
@@ -18,7 +19,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def record_not_found
-      render json: { status: :not_found, msg: "No record found" }
+    def record_invalid(exception)
+      render json: { errors: exception.record.errors }, status: :unprocessable_entity
+    end
+
+    def record_not_found(exception)
+      render json: { errors: exception.message }, status: :not_found
     end
 end
