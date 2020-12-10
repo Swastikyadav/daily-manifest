@@ -22,7 +22,7 @@ class ReadingsController < ApplicationController
     end
 
     def load_reading
-      @reading = @manifest.readings.find_by!(id: params[:id])
+      @reading = @manifest.readings.first
     end
 
     def reading_params

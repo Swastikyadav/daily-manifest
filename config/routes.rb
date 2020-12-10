@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   end
 
   resources :manifests, only: [:show] do
-    resources :readings, only: [:create, :update]
+    resource :readings, only: [:create, :update]
+    resource :reflections, only: [:create, :update]
   end
 
   root to: "static#home"
