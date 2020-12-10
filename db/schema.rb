@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_082334) do
   end
 
   create_table "readings", force: :cascade do |t|
-    t.string "read", default: "", null: false
+    t.string "read", null: false
     t.bigint "manifest_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -41,5 +41,5 @@ ActiveRecord::Schema.define(version: 2020_12_10_082334) do
   end
 
   add_foreign_key "manifests", "users", on_delete: :cascade
-  add_foreign_key "readings", "manifests"
+  add_foreign_key "readings", "manifests", on_delete: :cascade
 end
