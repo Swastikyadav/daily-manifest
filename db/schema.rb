@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_184957) do
+ActiveRecord::Schema.define(version: 2020_12_10_200006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_12_10_184957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_manifests_on_user_id"
+  end
+
+  create_table "microtasks", force: :cascade do |t|
+    t.string "task", null: false
+    t.bigint "manifest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manifest_id"], name: "index_microtasks_on_manifest_id"
   end
 
   create_table "readings", force: :cascade do |t|
@@ -49,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_184957) do
   end
 
   add_foreign_key "manifests", "users", on_delete: :cascade
+  add_foreign_key "microtasks", "manifests", on_delete: :cascade
   add_foreign_key "readings", "manifests", on_delete: :cascade
   add_foreign_key "reflections", "manifests", on_delete: :cascade
 end
