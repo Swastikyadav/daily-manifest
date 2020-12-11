@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_200006) do
+ActiveRecord::Schema.define(version: 2020_12_11_052946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goals", force: :cascade do |t|
+    t.jsonb "macro", default: [], null: false
+    t.jsonb "meezo", default: [], null: false
+    t.bigint "manifest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manifest_id"], name: "index_goals_on_manifest_id"
+  end
 
   create_table "manifests", force: :cascade do |t|
     t.integer "day"
@@ -56,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_200006) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "goals", "manifests", on_delete: :cascade
   add_foreign_key "manifests", "users", on_delete: :cascade
   add_foreign_key "microtasks", "manifests", on_delete: :cascade
   add_foreign_key "readings", "manifests", on_delete: :cascade
