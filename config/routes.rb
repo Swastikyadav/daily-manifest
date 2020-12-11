@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :registrations, only: [:create, :destroy] do
-    resources :manifests, only: [:create, :show, :update, :destroy]
+    resources :manifests, only: [:index, :show, :create, :update, :destroy]
   end
 
   resources :manifests, only: [:show] do

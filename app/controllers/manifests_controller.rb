@@ -1,6 +1,10 @@
 class ManifestsController < ApplicationController
   before_action :load_user
-  before_action :load_manifest, except: [:create]
+  before_action :load_manifest, except: [:create, :index]
+
+  def index
+    render json: { manifests: @user.manifests }
+  end
 
   def show
     render json: { manifest: @manifest }
