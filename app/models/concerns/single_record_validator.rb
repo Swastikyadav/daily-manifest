@@ -3,19 +3,21 @@ class SingleRecordValidator < ActiveModel::Validator
     manifest = Manifest.where(id: record.manifest_id).first
 
     def record_exists?(manifest)
-      case options[:name]
-      when "readings"
-        manifest.readings.size > 0
-      when "reflections"
-        manifest.reflections.size > 0
-      when "microtasks"
-        manifest.microtasks.size > 0
-      when "goals"
-        manifest.goals.size > 0
-      when "habits"
-        manifest.habits.size > 0
-      when "schedules"
-        manifest.schedules.size > 0
+      if !!manifest
+        case options[:name]
+        when "reading"
+          !!manifest.reading
+        when "reflection"
+          !!manifest.reflection
+        when "microtask"
+          !!manifest.microtask
+        when "goal"
+          !!manifest.goal
+        when "habit"
+          !!manifest.habit
+        when "schedule"
+          !!manifest.schedule
+        end
       end
     end
 

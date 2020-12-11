@@ -13,19 +13,19 @@ class ManifestsController < ApplicationController
   def create
     @manifest = @user.manifests.new(manifest_params)
     @manifest.save!
-    render json: { status: :ok, manifest: @manifest }
+    render json: { manifest: @manifest, reading: @manifest.reading }, status: :ok
   end
 
   def update
     @manifest.update!(manifest_params)
-    render json: { status: :ok, updated_manifest: @manifest }
+    render json: { updated_manifest: @manifest, reading: @manifest.reading }, status: :ok
   end
 
   def destroy
     if @manifest.destroy
-      render json: { status: :ok, destroyed_manifest: @manifest }
+      render json: { destroyed_manifest: @manifest }, status: :ok
     else
-      render json: { status: :bad_request, errors: @manifest.errors.full_messages }
+      render json: { errors: @manifest.errors.full_messages }, status: :bad_request
     end
   end
 
@@ -41,6 +41,10 @@ class ManifestsController < ApplicationController
 
     def manifest_params
       params.require(:manifest)
-        .permit(:day, :date_of_manifest)
+        .permit(
+          :day,
+          :date_of_manifest,
+          reading_attributes: [:read]
+        )
     end
 end
