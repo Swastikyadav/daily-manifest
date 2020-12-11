@@ -16,7 +16,8 @@ class ManifestsController < ApplicationController
     render json: { 
       manifest: @manifest,
       reading: @manifest.reading,
-      reflection: @manifest.reflection
+      reflection: @manifest.reflection,
+      microtask: @manifest.microtask
     }, status: :ok
   end
 
@@ -25,7 +26,8 @@ class ManifestsController < ApplicationController
     render json: { 
       updated_manifest: @manifest,
       reading: @manifest.reading,
-      reflection: @manifest.reflection
+      reflection: @manifest.reflection,
+      microtask: @manifest.microtask
     }, status: :ok
   end
 
@@ -53,7 +55,8 @@ class ManifestsController < ApplicationController
           :day,
           :date_of_manifest,
           reading_attributes: [:read],
-          reflection_attributes: [reflection: [:text, :achieved]]
+          reflection_attributes: [reflection: [:text, :achieved]],
+          microtask_attributes: [task: [:text]]
         )
     end
 end
