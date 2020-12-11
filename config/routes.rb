@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resource :readings, only: [:create, :update]
     resource :reflections, only: [:create, :update]
     resource :microtasks, only: [:create, :update]
+    resource :goals, only: [:create, :update]
   end
 
   root to: "static#home"
