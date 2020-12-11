@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :microtasks, only: [:create, :update]
     resource :goals, only: [:create, :update]
     resource :habits, only: [:create, :update]
+    resource :schedules, only: [:create, :update]
   end
 
   root to: "static#home"
