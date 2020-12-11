@@ -7,7 +7,18 @@ class ManifestsController < ApplicationController
   end
 
   def show
-    render json: { manifest: @manifest }
+    render json: { 
+      manifest: @manifest,
+      reading: @manifest.reading,
+      reflection: @manifest.reflection,
+      microtask: @manifest.microtask,
+      goal: @manifest.goal,
+      habit: @manifest.habit,
+      schedule: {
+        day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
+        entries: @manifest.schedule
+      }
+    }
   end
 
   def create
