@@ -3,11 +3,9 @@ class MicrotasksController < ApplicationController
   before_action :load_microtask, only: [:update]
 
   def create
-    if @manifest.microtasks.size == 0
-      @microtask = @manifest.microtasks.new(microtask_params)
-      @microtask.save!
-      render json: { microtask: @microtask }, status: :ok
-    end
+    @microtask = @manifest.microtasks.new(microtask_params)
+    @microtask.save!
+    render json: { microtask: @microtask }, status: :ok
   end
 
   def update
@@ -22,7 +20,7 @@ class MicrotasksController < ApplicationController
     end
 
     def load_microtask
-      @microtask = @manifest.microtasks.first
+      @microtask = @manifest.microtasks.first!
     end
 
     def microtask_params

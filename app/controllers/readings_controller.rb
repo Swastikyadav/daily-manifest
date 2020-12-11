@@ -3,11 +3,9 @@ class ReadingsController < ApplicationController
   before_action :load_reading, only: [:update]
 
   def create
-    if @manifest.readings.size == 0
-      @reading = @manifest.readings.new(reading_params)
-      @reading.save!
-      render json: { status: :ok, reading: @reading }
-    end
+    @reading = @manifest.readings.new(reading_params)
+    @reading.save!
+    render json: { status: :ok, reading: @reading }
   end
 
   def update
@@ -22,7 +20,7 @@ class ReadingsController < ApplicationController
     end
 
     def load_reading
-      @reading = @manifest.readings.first
+      @reading = @manifest.readings.first!
     end
 
     def reading_params

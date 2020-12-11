@@ -3,11 +3,9 @@ class HabitsController < ApplicationController
   before_action :load_habit, only: [:update]
 
   def create
-    if @manifest.habits.size == 0
-      @habit = @manifest.habits.new(habit_params)
-      @habit.save!
-      render json: { habit: @habit }, status: :ok
-    end
+    @habit = @manifest.habits.new(habit_params)
+    @habit.save!
+    render json: { habit: @habit }, status: :ok
   end
 
   def update
@@ -22,7 +20,7 @@ class HabitsController < ApplicationController
     end
 
     def load_habit
-      @habit = @manifest.habits.first
+      @habit = @manifest.habits.first!
     end
 
     def habit_params

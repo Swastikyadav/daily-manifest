@@ -3,11 +3,9 @@ class GoalsController < ApplicationController
   before_action :load_goal, only: [:update]
 
   def create
-    if @manifest.goals.size == 0
-      @goal = @manifest.goals.new(goal_params)
-      @goal.save!
-      render json: { goal: @goal }, status: :ok
-    end
+    @goal = @manifest.goals.new(goal_params)
+    @goal.save!
+    render json: { goal: @goal }, status: :ok
   end
 
   def update
@@ -22,7 +20,7 @@ class GoalsController < ApplicationController
     end
 
     def load_goal
-      @goal = @manifest.goals.first
+      @goal = @manifest.goals.first!
     end
 
     def goal_params

@@ -3,12 +3,9 @@ class ReflectionsController < ApplicationController
   before_action :load_reflection, only: [:update]
   
   def create
-    p reflection_params
-    if @manifest.reflections.size == 0
-      @reflection = @manifest.reflections.new(reflection_params)
-      @reflection.save!
-      render json: { reflection: @reflection }, status: :ok
-    end
+    @reflection = @manifest.reflections.new(reflection_params)
+    @reflection.save!
+    render json: { reflection: @reflection }, status: :ok
   end
 
   def update
@@ -23,7 +20,7 @@ class ReflectionsController < ApplicationController
     end
 
     def load_reflection
-      @reflection = @manifest.reflections.first
+      @reflection = @manifest.reflections.first!
     end
 
     def reflection_params
