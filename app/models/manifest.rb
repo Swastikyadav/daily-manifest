@@ -11,6 +11,7 @@ class Manifest < ApplicationRecord
   accepts_nested_attributes_for :reflection, update_only: true
   accepts_nested_attributes_for :microtask, update_only: true
   accepts_nested_attributes_for :goal, update_only: true
+  accepts_nested_attributes_for :habit, update_only: true
 
   validates :day, presence: true
   validates :date_of_manifest, presence: true, uniqueness: true

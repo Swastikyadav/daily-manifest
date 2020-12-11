@@ -18,7 +18,8 @@ class ManifestsController < ApplicationController
       reading: @manifest.reading,
       reflection: @manifest.reflection,
       microtask: @manifest.microtask,
-      goal: @manifest.goal
+      goal: @manifest.goal,
+      habit: @manifest.habit
     }, status: :ok
   end
 
@@ -29,7 +30,8 @@ class ManifestsController < ApplicationController
       reading: @manifest.reading,
       reflection: @manifest.reflection,
       microtask: @manifest.microtask,
-      goal: @manifest.goal
+      goal: @manifest.goal,
+      habit: @manifest.habit
     }, status: :ok
   end
 
@@ -59,7 +61,8 @@ class ManifestsController < ApplicationController
           reading_attributes: [:read],
           reflection_attributes: [reflection: [:text, :achieved]],
           microtask_attributes: [task: [:text]],
-          goal_attributes: [macro: [:text, :tag], meezo: [:text, :tag]]
+          goal_attributes: [macro: [:text, :tag], meezo: [:text, :tag]],
+          habit_attributes: [good_habits: [:habit, :maintened], bad_habits: [:habit, :resisted]]
         )
     end
 end
