@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :manifests, only: [:show] do
-    resource :reflections, only: [:create, :update]
     resource :microtasks, only: [:create, :update]
     resource :goals, only: [:create, :update]
     resource :habits, only: [:create, :update]

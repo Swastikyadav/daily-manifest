@@ -8,6 +8,7 @@ class Manifest < ApplicationRecord
   has_one :schedule
 
   accepts_nested_attributes_for :reading, update_only: true
+  accepts_nested_attributes_for :reflection, update_only: true
 
   validates :day, presence: true
   validates :date_of_manifest, presence: true, uniqueness: true
