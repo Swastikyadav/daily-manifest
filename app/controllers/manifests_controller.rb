@@ -19,7 +19,11 @@ class ManifestsController < ApplicationController
       reflection: @manifest.reflection,
       microtask: @manifest.microtask,
       goal: @manifest.goal,
-      habit: @manifest.habit
+      habit: @manifest.habit,
+      schedule: {
+        day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
+        entries: @manifest.schedule
+      }
     }, status: :ok
   end
 
@@ -31,7 +35,11 @@ class ManifestsController < ApplicationController
       reflection: @manifest.reflection,
       microtask: @manifest.microtask,
       goal: @manifest.goal,
-      habit: @manifest.habit
+      habit: @manifest.habit,
+      schedule: {
+        day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
+        entries: @manifest.schedule
+      }
     }, status: :ok
   end
 
@@ -62,7 +70,11 @@ class ManifestsController < ApplicationController
           reflection_attributes: [reflection: [:text, :achieved]],
           microtask_attributes: [task: [:text]],
           goal_attributes: [macro: [:text, :tag], meezo: [:text, :tag]],
-          habit_attributes: [good_habits: [:habit, :maintened], bad_habits: [:habit, :resisted]]
+          habit_attributes: [good_habits: [:habit, :maintened], bad_habits: [:habit, :resisted]],
+          schedule_attributes: [
+            :day_starts_at,
+            time_entry: [:first_half, :second_half]
+          ]
         )
     end
 end

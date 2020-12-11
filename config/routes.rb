@@ -7,9 +7,5 @@ Rails.application.routes.draw do
     resources :manifests, only: [:index, :show, :create, :update, :destroy]
   end
 
-  resources :manifests, only: [:show] do
-    resource :schedules, only: [:create, :update]
-  end
-
   root to: "static#home"
 end
