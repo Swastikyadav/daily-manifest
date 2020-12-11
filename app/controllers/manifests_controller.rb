@@ -17,7 +17,8 @@ class ManifestsController < ApplicationController
       manifest: @manifest,
       reading: @manifest.reading,
       reflection: @manifest.reflection,
-      microtask: @manifest.microtask
+      microtask: @manifest.microtask,
+      goal: @manifest.goal
     }, status: :ok
   end
 
@@ -27,7 +28,8 @@ class ManifestsController < ApplicationController
       updated_manifest: @manifest,
       reading: @manifest.reading,
       reflection: @manifest.reflection,
-      microtask: @manifest.microtask
+      microtask: @manifest.microtask,
+      goal: @manifest.goal
     }, status: :ok
   end
 
@@ -56,7 +58,8 @@ class ManifestsController < ApplicationController
           :date_of_manifest,
           reading_attributes: [:read],
           reflection_attributes: [reflection: [:text, :achieved]],
-          microtask_attributes: [task: [:text]]
+          microtask_attributes: [task: [:text]],
+          goal_attributes: [macro: [:text, :tag], meezo: [:text, :tag]]
         )
     end
 end
