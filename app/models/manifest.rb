@@ -4,6 +4,7 @@ class Manifest < ApplicationRecord
   has_many :reflections
   has_many :microtasks
   has_many :goals
+  has_many :habits
 
   validates :day, presence: true
   validates :date_of_manifest, presence: true

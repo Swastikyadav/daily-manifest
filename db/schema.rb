@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_052946) do
+ActiveRecord::Schema.define(version: 2020_12_11_060844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_12_11_052946) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["manifest_id"], name: "index_goals_on_manifest_id"
+  end
+
+  create_table "habits", force: :cascade do |t|
+    t.jsonb "good_habits", default: [], null: false
+    t.jsonb "bad_habits", default: [], null: false
+    t.bigint "manifest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manifest_id"], name: "index_habits_on_manifest_id"
   end
 
   create_table "manifests", force: :cascade do |t|
@@ -66,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_052946) do
   end
 
   add_foreign_key "goals", "manifests", on_delete: :cascade
+  add_foreign_key "habits", "manifests", on_delete: :cascade
   add_foreign_key "manifests", "users", on_delete: :cascade
   add_foreign_key "microtasks", "manifests", on_delete: :cascade
   add_foreign_key "readings", "manifests", on_delete: :cascade
