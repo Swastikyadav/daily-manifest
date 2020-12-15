@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
     def ensure_user_is_logged_in
       unless @current_user
-        render json: { status: :unauthorized, msg: "Please log in first" }
+        render json: { msg: "Please log in first" }, status: :unauthorized
       end
     end
 
     def ensure_user_is_logged_out
       if @current_user
-        render json: { status: :unauthorized, msg: "You need to logout first to perform this action" }
+        render json: { msg: "You need to logout first to perform this action" }, status: :unauthorized
       end
     end
 
