@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def record_invalid(exception)
-      render json: { errors: exception.record.errors }, status: :unprocessable_entity
+      render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def record_not_found(exception)

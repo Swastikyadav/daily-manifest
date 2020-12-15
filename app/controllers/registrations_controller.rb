@@ -6,8 +6,8 @@ class RegistrationsController < ApplicationController
     user = User.new(registration_params)
 
     if user.save!
-    session[:user_id] = user.id
-    render json: { status: :created, user: user }
+      session[:user_id] = user.id
+      render json: { user: user }, status: :created
     end
   end
 

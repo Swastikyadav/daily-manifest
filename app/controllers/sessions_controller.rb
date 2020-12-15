@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: { logged_in: true, user: user }, status: :created
     else
-      render json: { logged_in: false, msg: "Invalid login credentials" }, status: :unprocessable_entity
+      render json: { logged_in: false, errors: ["Invalid login credentials"] }, status: :unprocessable_entity
     end
   end
 
