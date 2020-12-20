@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
     def ensure_user_is_logged_in
-      unless session[:user_id]
+      unless @current_user
         render json: { msg: "Please log in first" }, status: :unauthorized
       end
     end
