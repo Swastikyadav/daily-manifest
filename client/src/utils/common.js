@@ -37,6 +37,7 @@ export const initialManifestData = {
         {first_half: "", second_half: ""},
         {first_half: "", second_half: ""},
         {first_half: "", second_half: ""},
+        {first_half: "", second_half: ""},
         {first_half: "", second_half: ""}
     ]}
   }

@@ -27,7 +27,7 @@ function Registration({ changeUser, setError }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const userResponse = await axios.post("/api/v1/registrations", {
+      const userResponse = await axios.post("/v1/registrations", {
         user
       },
       {withCredentials: true});

@@ -28,7 +28,7 @@ function Form({ buttonText }) {
   const fetchManifestDetails = async () => {
     const { data:
       { manifest, reading, reflection, microtask, goal, habit, schedule }
-    } = await axios.get(`/api/v1/registrations/${user.id}/manifests/${params.id}`, {withCredentials: true})
+    } = await axios.get(`/v1/registrations/${user.id}/manifests/${params.id}`, {withCredentials: true})
     setManifestForm({
       manifest: {
         day: manifest.day,

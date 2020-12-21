@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/sessions/logged_in", {withCredentials: true})
+    axios.get("/v1/sessions/logged_in", {withCredentials: true})
       .then(res => {
         this.setState({
           logged_in: res.data.logged_in,
@@ -61,7 +61,7 @@ class App extends React.Component {
   }
 
   handleLogout() {
-    axios.delete("/api/v1/sessions", {withCredentials: true})
+    axios.delete("/v1/sessions", {withCredentials: true})
       .then(res => {
         this.setState({
           logged_in: !res.data.logged_out,

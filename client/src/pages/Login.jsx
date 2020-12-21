@@ -26,7 +26,7 @@ function Login({ changeUser, setError }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const userResponse = await axios.post("/api/v1/sessions", {
+      const userResponse = await axios.post("/v1/sessions", {
         user
       },
       {withCredentials: true});
