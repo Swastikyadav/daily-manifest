@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Calendar, DatePicker, Space, Alert, Select, Col, Row, Badge } from "antd";
+import { Calendar, DatePicker, Space, Alert, Select, Col, Row, Badge, Button } from "antd";
 import axios from "axios";
 import moment from "moment";
 
@@ -12,6 +12,7 @@ function NewManifest({ setError }) {
   let history = useHistory();
   const [availableDateArray, setAvailableDateArray] = useState([]);
   const [initialManifestForm, setInitialManifestForm] = useState(initialManifestData);
+  const [loading, setLoading] = useState(false);
 
   const user = useContext(UserContext);
 
@@ -26,14 +27,17 @@ function NewManifest({ setError }) {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.post(
         `/v1/registrations/${user.id}/manifests`,
         initialManifestForm,
         {withCredentials: true}
       );
+      setLoading(false);
       history.push(`/manifests/${data.manifest.id}`);
     } catch({ response }) {
       const errMsg = errorMessageFormat(response.data.errors);
+      setLoading(false);
       setError(errMsg);
     }
   }
@@ -150,37 +154,35 @@ function NewManifest({ setError }) {
   }
 
   return (
-    <>
-      <>
-        <div className="flex justify-end mb-12">
-          <Space direction="vertical" size={12}>
-            <DatePicker
-              placeholder="Select date for manifest"
-              disabledDate={disabledDate}
-              onChange={handleDateChange}
-            />
-          </Space>
-          <input
-            type="number"
-            placeholder="Day"
-            value={initialManifestForm.manifest.day}
-            onChange={handleDayChange}
-            className="ml-4 border-2 w-1/12"
+    <div className="relative">
+      <div className="flex justify-end mb-12">
+        <Space direction="vertical" size={12}>
+          <DatePicker
+            placeholder="Select date for manifest"
+            disabledDate={disabledDate}
+            onChange={handleDateChange}
           />
-          <button className="ml-4 bg-blue-400 p-1 px-2 rounded text-white font-bold" onClick={handleSubmit}>+ Add Manifest</button>
-        </div>
-        <Alert
-          message="Check in below calander which dates are available to create a new manifest, and which dates already have a manifest."
-          type="info"
-          showIcon
+        </Space>
+        <input
+          type="number"
+          placeholder="Day"
+          value={initialManifestForm.manifest.day}
+          onChange={handleDayChange}
+          className="ml-4 border-2 w-1/12"
         />
-        <Calendar
-          onSelect={onSelect}
-          headerRender={headerRender}
-          dateCellRender={dateCellRender}
-        />
-      </>
-    </>
+        <Button type="primary" loading={loading} className="ml-4" onClick={handleSubmit}>+ Add Manifest</Button>
+      </div>
+      <Alert
+        message="Check in below calander which dates are available to create a new manifest, and which dates already have a manifest."
+        type="info"
+        showIcon
+      />
+      <Calendar
+        onSelect={onSelect}
+        headerRender={headerRender}
+        dateCellRender={dateCellRender}
+      />
+    </div>
   );
 }
 

@@ -89,7 +89,7 @@ class App extends React.Component {
               <NewManifest setError={this.setError} />
             </Route>
             <Route exact path="/manifests/:id">
-              <EditManifest />
+              <EditManifest setError={this.setError} />
             </Route>
             <Route exact path="/manifests">
               <ManifestIndex setError={this.setError} />

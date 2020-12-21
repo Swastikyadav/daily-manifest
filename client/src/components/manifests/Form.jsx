@@ -14,7 +14,7 @@ import Reflection from "./Reflection";
 
 import UserContext from "../../context/UserContext";
 
-function Form({ buttonText }) {
+function Form({ handleSubmit }) {
   let params = useParams();
   const user = useContext(UserContext);
 
@@ -71,7 +71,10 @@ function Form({ buttonText }) {
             <Space direction="vertical" size={12}>
               <DatePicker value={moment(manifestForm.manifest.date_of_manifest)} format="dddd, MMM Do" disabled />
             </Space>
-            <button className="ml-4 bg-blue-400 p-1 px-2 rounded text-white font-bold">{buttonText}</button>
+            <button
+              className="ml-4 bg-blue-400 p-1 px-2 rounded text-white font-bold"
+              onClick={() => handleSubmit(manifestForm)}
+            >Save Changes</button>
           </div>
           <div className="grid sm:grid-cols-1 gap-4 md:grid-cols-2">
             <Schedule schedule_attr={manifestForm.manifest.schedule_attributes} updateManifestForm={updateManifestForm} />
