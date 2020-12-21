@@ -1,6 +1,12 @@
 {
   "name": "dailymanifest",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.13.1"
+  },
+  "dependencies": {
+    "@rails/webpacker": "5.1.1"
+  },
   "description": "DailyManifest App, All your business goals and health goals at one place.",
   "main": "index.js",
   "repository": "https://github.com/Swastikyadav/daily-manifest-api.git",
