@@ -2,7 +2,7 @@
   "name": "dm-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/api",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@craco/craco": "^6.0.0",

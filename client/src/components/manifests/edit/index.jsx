@@ -17,7 +17,7 @@ function EditManifest({ setError }) {
   const handleSubmit = async (payload) => {
     try {
       await axios.patch(
-        `/v1/registrations/${user.id}/manifests/${params.id}`,
+        `/api/v1/registrations/${user.id}/manifests/${params.id}`,
         payload,
         {withCredentials: true}
       );

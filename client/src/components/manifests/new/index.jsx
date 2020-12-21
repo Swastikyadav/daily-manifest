@@ -29,7 +29,7 @@ function NewManifest({ setError }) {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `/v1/registrations/${user.id}/manifests`,
+        `/api/v1/registrations/${user.id}/manifests`,
         initialManifestForm,
         {withCredentials: true}
       );
@@ -44,7 +44,7 @@ function NewManifest({ setError }) {
 
   const buildAvailableDateArray = async () => {
     try {
-      const { data } = await axios.get(`/v1/registrations/${user.id}/manifests`, {withCredentials: true});
+      const { data } = await axios.get(`/api/v1/registrations/${user.id}/manifests`, {withCredentials: true});
       const arr = data.manifests.map(mf => {
         return mf.date_of_manifest;
       })

@@ -22,7 +22,7 @@ function ManifestsIndex({ setError }) {
 
   const fetchAndSetManifests = async () => {
     try {
-      const { data } = await axios.get(`/v1/registrations/${user.id}/manifests`, {withCredentials: true});
+      const { data } = await axios.get(`/api/v1/registrations/${user.id}/manifests`, {withCredentials: true});
       setManifests(data.manifests);
     } catch ({ response }) {
       const errMsg = errorMessageFormat(response.data.errors);
