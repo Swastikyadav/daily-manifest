@@ -54,7 +54,7 @@ function MacroGoal({ goal_attr, updateManifestForm }) {
         return (
           <div key={idx} className="px-4 border-b-2 h-16 flex justify-between">
             {renderIcon(idx)}
-            <input name="text" value={ma.text} onChange={(e) => handleChange(idx, e)} type="text" className="h-14 w-11/12 outline-none" />
+            <input name="text" value={ma.text} onChange={(e) => handleChange(idx, e)} type="text" className="h-14 w-11/12 outline-none text-blue-600 font-mono" />
           </div>
         );
       })}

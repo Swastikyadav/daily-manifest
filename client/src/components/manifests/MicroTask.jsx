@@ -38,7 +38,7 @@ function MicroTask({ microtask_attr, updateManifestForm }) {
         return (
           <div key={idx} className="px-4 border-b-2 h-16 flex justify-between">
             <span className="self-center">{idx + 1}.</span>
-            <input name="text" type="text" value={mt.text} onChange={(e) => handleChange(idx, e)} className="h-14 w-11/12 outline-none" />
+            <input name="text" type="text" value={mt.text} onChange={(e) => handleChange(idx, e)} className="h-14 w-11/12 outline-none text-blue-600 font-mono" />
           </div>
         )
       })}

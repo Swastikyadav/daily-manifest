@@ -25,7 +25,7 @@ function Reading({ reading_attr, updateManifestForm }) {
           <p>READING</p>
         </Tooltip>
       </div>
-      <input type="text" value={readingAttr.read} onChange={handleChange} className="h-14 w-11/12 outline-none" />
+      <input type="text" value={readingAttr} onChange={handleChange} className="h-14 w-11/12 outline-none text-blue-600 font-mono" />
     </div>
   );
 }

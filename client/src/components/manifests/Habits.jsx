@@ -62,7 +62,7 @@ function Habits({ habit_attr, updateManifestForm }) {
               <span className="self-center">
                 <Checkbox onChange={() => handleCheckBox(idx, goodHabitAttr, setGoodHabitAttr, "maintened")} checked={gh.maintened}></Checkbox>
               </span>
-              <input name="habit" type="text" value={gh.habit} onChange={(e) => handleChange(idx, goodHabitAttr, setGoodHabitAttr, e)} className="h-14 w-11/12 outline-none" />
+              <input name="habit" type="text" value={gh.habit} onChange={(e) => handleChange(idx, goodHabitAttr, setGoodHabitAttr, e)} className="h-14 w-11/12 outline-none text-blue-600 font-mono" />
             </div>
           );
         })}
@@ -80,7 +80,7 @@ function Habits({ habit_attr, updateManifestForm }) {
               <span className="self-center">
                 <Checkbox onChange={() => handleCheckBox(idx, badHabitAttr, setBadHabitAttr, "resisted")} checked={bh.resisted}></Checkbox>
               </span>
-              <input name="habit" type="text" value={bh.habit} onChange={(e) => handleChange(idx, badHabitAttr, setBadHabitAttr, e)} className="h-14 w-11/12 outline-none" />
+              <input name="habit" type="text" value={bh.habit} onChange={(e) => handleChange(idx, badHabitAttr, setBadHabitAttr, e)} className="h-14 w-11/12 outline-none text-blue-600 font-mono" />
             </div>
           );
         })}

@@ -48,8 +48,8 @@ function Schedule({ schedule_attr, updateManifestForm }) {
               {moment(day_starts_at, "HH:mm a").add(idx, "hours").format("h:mm a")}
             </span>
             <div className="w-10/12">
-              <input name="first_half" value={te.first_half} onChange={(e) => handleChange(idx, e)} className="pt-2 w-full outline-none border-b-2 border-gray-900" />
-              <input name="second_half" value={te.second_half} onChange={(e) => handleChange(idx, e)} className="w-full outline-none" />
+              <input name="first_half" value={te.first_half} onChange={(e) => handleChange(idx, e)} className="pt-2 w-full outline-none border-b-2 border-gray-900 text-blue-600 font-mono" />
+              <input name="second_half" value={te.second_half} onChange={(e) => handleChange(idx, e)} className="w-full outline-none text-blue-600 font-mono" />
             </div>
           </div>
         )
