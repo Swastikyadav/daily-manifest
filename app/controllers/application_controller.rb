@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   skip_before_action :verify_authenticity_token
-  before_action :ensure_user_is_logged_in
+  before_action :ensure_user_is_logged_in, except: [:fallback_index_html]
+
+  def fallback_index_html
+    render :file => "public/index.html"
+  end
 
   private
 
