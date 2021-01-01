@@ -14,6 +14,6 @@ class Manifest < ApplicationRecord
   accepts_nested_attributes_for :habit, update_only: true
   accepts_nested_attributes_for :schedule, update_only: true
 
-  validates :day, presence: true
+  validates :day, presence: true, uniqueness: { scope: :user_id }
   validates :date_of_manifest, presence: true, uniqueness: { scope: :user_id }
 end
