@@ -8,51 +8,18 @@ module Api::V1
     end
 
     def show
-      render json: { 
-        manifest: @manifest,
-        reading: @manifest.reading,
-        reflection: @manifest.reflection,
-        microtask: @manifest.microtask,
-        goal: @manifest.goal,
-        habit: @manifest.habit,
-        schedule: {
-          day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
-          entries: @manifest.schedule
-        }
-      }
+      render json: ManifestService.new(@manifest).process, status: :ok
     end
 
     def create
       @manifest = @user.manifests.new(manifest_params)
       @manifest.save!
-      render json: { 
-        manifest: @manifest,
-        reading: @manifest.reading,
-        reflection: @manifest.reflection,
-        microtask: @manifest.microtask,
-        goal: @manifest.goal,
-        habit: @manifest.habit,
-        schedule: {
-          day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
-          entries: @manifest.schedule
-        }
-      }, status: :ok
+      render json: ManifestService.new(@manifest).process, status: :ok
     end
 
     def update
       @manifest.update!(manifest_params)
-      render json: { 
-        updated_manifest: @manifest,
-        reading: @manifest.reading,
-        reflection: @manifest.reflection,
-        microtask: @manifest.microtask,
-        goal: @manifest.goal,
-        habit: @manifest.habit,
-        schedule: {
-          day_starts_at: @manifest.schedule.day_starts_at.strftime("%I:%M %p"),
-          entries: @manifest.schedule
-        }
-      }, status: :ok
+      render json: ManifestService.new(@manifest).process, status: :ok
     end
 
     def destroy
